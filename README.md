@@ -1,2 +1,2 @@
-# PRoject Title
-Project Description
+# Odin-Battleship
+The battleship project from The Odin Project
