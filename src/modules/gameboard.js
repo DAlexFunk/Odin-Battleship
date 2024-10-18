@@ -16,12 +16,12 @@ class Gameboard {
     if (this.gameboard[row][col]) return false;
 
     if (direction === "vertical") {
-      if (row + shipLength >= this.size) return false;
+      if (row + shipLength > this.size) return false;
       for (let i = 0; i < shipLength; i++) {
         if (this.gameboard[row + i][col]) return false;
       }
     } else {
-      if (col + shipLength >= this.size) return false;
+      if (col + shipLength > this.size) return false;
       for (let i = 0; i < shipLength; i++) {
         if (this.gameboard[row][col + i]) return false;
       }
