@@ -8,27 +8,6 @@ class Gameboard {
     this.gameboard = Array.from({ length: size }, () => Array(size).fill(null));
   }
 
-  #getNeighbors(row, col) {
-    const adjacency = [
-      [-1, 0],
-      [1, 0],
-      [0, -1],
-      [0, 1],
-    ];
-
-    const neighbors = [];
-    adjacency.forEach((neighbor) =>
-      neighbors.push([row + neighbor[0], col + neighbor[1]])
-    );
-    return neighbors.filter(
-      (location) =>
-        0 <= location[0] &&
-        location[0] < this.size &&
-        0 <= location[1] &&
-        location[1] < this.size
-    );
-  }
-
   #validPlacement(row, col, shipLength, direction) {
     if (row < 0 || row >= this.size) return false;
     if (col < 0 || col >= this.size) return false;
@@ -74,8 +53,10 @@ class Gameboard {
   }
 
   recieveAttack(row, col) {
-    if (row < 0 || row >= this.size) throw new Error(".recieveAttack() Index out of range");
-    else if (col < 0 || col >= this.size) throw new Error(".recieveAttack() Index out of range");
+    if (row < 0 || row >= this.size)
+      throw new Error(".recieveAttack() Index out of range");
+    else if (col < 0 || col >= this.size)
+      throw new Error(".recieveAttack() Index out of range");
     else if (this.missedShots.includes([row, col])) return false;
 
     if (!this.gameboard[row][col]) {
@@ -90,7 +71,7 @@ class Gameboard {
   }
 
   allSunk() {
-    return this.ships.every((ship) => ship.isSunk())
+    return this.ships.every((ship) => ship.isSunk());
   }
 }
 
