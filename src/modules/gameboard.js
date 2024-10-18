@@ -61,13 +61,13 @@ class Gameboard {
 
     if (!this.gameboard[row][col]) {
       this.missedShots.push([row, col]);
-      return true;
+      return "miss";
     } else if (Array.isArray(this.gameboard[row][col])) {
       [row, col] = this.gameboard[row][col];
     }
 
     this.gameboard[row][col].hit();
-    return true;
+    return "hit";
   }
 
   allSunk() {

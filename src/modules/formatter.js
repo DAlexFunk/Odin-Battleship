@@ -3,6 +3,11 @@ const Formatter = {
     return location.children[row * 10 + col];
   },
 
+  getIndexOfCellInBoard: (cell, board) => {
+    const index = Object.values(board.children).indexOf(cell);
+    return [Math.floor(index / 10), index % 10];
+  },
+
   displayGameboard: (gameboard, location) => {
     for (let row = 0; row < gameboard.gameboard.length; row++) {
       for (let col = 0; col < gameboard.gameboard[row].length; col++) {
