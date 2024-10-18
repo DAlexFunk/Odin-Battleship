@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #d7dae5;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+div#playerHalf,
+div#computerHalf {
+  height: 100%;
+  width: 100%;
+}
+
+div.gameboard {
+  background-color: black;
+  width: 60%;
+  height: 60%;
+  margin: 10% auto 0 auto;
+  padding: 5px;
+
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  gap: 5px;
+}
+
+div.gridItem {
+    background-color: white;
+}
+
+button {
+    display: block;
+    margin: 5% auto 0;
+}
