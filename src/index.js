@@ -12,30 +12,38 @@ function takeTurn(evt) {
 
   if (computerGameBoard.allSunk()) {
     alert("YOU WIn");
-    computerGridCells.forEach((cell) => cell.removeEventListener("click", takeTurn));
+    computerGridCells.forEach((cell) =>
+      cell.removeEventListener("click", takeTurn)
+    );
   }
 }
 
-const playerGameboard = new Gameboard();
-playerGameboard.placeShip(1, 1, 2, "vertical");
-playerGameboard.placeShip(7, 1, 3, "horizontal");
-playerGameboard.placeShip(7, 7, 3, "vertical");
-playerGameboard.placeShip(3, 3, 4, "horizontal");
-playerGameboard.placeShip(5, 5, 5, "horizontal");
+const humanplayer = new Player();
+humanplayer.placeShips(
+  [1, 1, 2, "vertical"],
+  [7, 1, 3, "horizontal"],
+  [7, 7, 3, "vertical"],
+  [3, 3, 4, "horizontal"],
+  [5, 5, 5, "horizontal"]
+);
 
-const computerGameBoard = new Gameboard();
-computerGameBoard.placeShip(1, 1, 2, "vertical");
-computerGameBoard.placeShip(7, 1, 3, "horizontal");
-computerGameBoard.placeShip(7, 7, 3, "vertical");
-computerGameBoard.placeShip(3, 3, 4, "horizontal");
-computerGameBoard.placeShip(5, 5, 5, "horizontal");
+const computerPlayer = new Player();
+computerPlayer.placeShips(
+  [1, 1, 2, "vertical"],
+  [7, 1, 3, "horizontal"],
+  [7, 7, 3, "vertical"],
+  [3, 3, 4, "horizontal"],
+  [5, 5, 5, "horizontal"]
+);
 
 Formatter.displayGameboard(
-  playerGameboard,
+  humanplayer.gameboard,
   document.querySelector("div#playerBoard")
 );
 
-const computerGridCells = document.querySelectorAll("div#computerBoard div.gridItem");
+const computerGridCells = document.querySelectorAll(
+  "div#computerBoard div.gridItem"
+);
 const computerBoard = document.querySelector("div#computerBoard");
 
-computerGridCells.forEach((cell) => cell.addEventListener("click", takeTurn));
+computerGridCells.forEach((cell) => cell.addEventListener("click", () => humanplayer.takeTurn(cell, computerPlayer.gameboard)));
