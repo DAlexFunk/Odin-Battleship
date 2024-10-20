@@ -16,7 +16,7 @@ class Player {
 
   generateRandomShips() {
     this.gameboard.clearShips();
-    console.log(this.gameboard.ships)
+    console.log(this.gameboard.ships);
     const lengths = [2, 3, 3, 4, 5];
     let i = 0;
     while (i < lengths.length) {

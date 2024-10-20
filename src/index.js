@@ -46,20 +46,27 @@ function computerTurn() {
   }
 }
 
+function startGame() {
+  const computerGridCells = document.querySelectorAll("#computerBoard .gridItem");
+  computerGridCells.forEach((cell) =>
+    cell.addEventListener("click", playerTurn)
+  );
+
+  computerPlayer.generateRandomShips();
+
+  document.querySelector("button#startGame").remove();
+  document.querySelector("button#randomButton").remove();
+}
+
 const humanplayer = new Player("Alex");
 humanplayer.generateRandomShips();
 
 const computerPlayer = new Player("CPU");
-computerPlayer.generateRandomShips();
 
 Formatter.displayGameboard(
   humanplayer.gameboard,
   document.querySelector("div#playerBoard")
 );
-
-const computerGridCells = document.querySelectorAll("#computerBoard .gridItem");
-
-computerGridCells.forEach((cell) => cell.addEventListener("click", playerTurn));
 
 document.querySelector("button#randomButton").addEventListener("click", () => {
   humanplayer.generateRandomShips();
@@ -68,3 +75,5 @@ document.querySelector("button#randomButton").addEventListener("click", () => {
     document.querySelector("div#playerBoard")
   );
 });
+
+document.querySelector("button#startGame").addEventListener("click", startGame);

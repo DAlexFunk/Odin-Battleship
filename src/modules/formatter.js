@@ -9,7 +9,7 @@ const Formatter = {
   },
 
   displayGameboard: (gameboard, location) => {
-    Object.values(location.children).forEach((cell) => {cell.style["background-color"] = ""})
+    Object.values(location.children).forEach((cell) => cell.style["background-color"] = "");
     for (let row = 0; row < gameboard.gameboard.length; row++) {
       for (let col = 0; col < gameboard.gameboard[row].length; col++) {
         if (gameboard.gameboard[row][col])
