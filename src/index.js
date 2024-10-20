@@ -6,7 +6,7 @@ function playerTurn(evt) {
   const position = Formatter.getIndexOfCellInBoard(cell, cell.parentElement);
   const attackResult = computerPlayer.gameboard.recieveAttack(...position);
   if (attackResult) {
-    cell.className += " shotAt"
+    cell.className += " shotAt";
     cell.style["background-color"] = attackResult === "hit" ? "red" : "black";
     cell.removeEventListener("click", playerTurn);
   }
@@ -24,13 +24,15 @@ function playerTurn(evt) {
 }
 
 function computerTurn() {
-  const possibleShots = Array.from(document.querySelectorAll("#playerBoard .gridItem:not(.shotAt)"))
+  const possibleShots = Array.from(
+    document.querySelectorAll("#playerBoard .gridItem:not(.shotAt)")
+  );
   let cell = possibleShots[Math.floor(Math.random() * possibleShots.length)];
 
   const position = Formatter.getIndexOfCellInBoard(cell, cell.parentElement);
   const attackResult = humanplayer.gameboard.recieveAttack(...position);
   if (attackResult) {
-    cell.className += " shotAt"
+    cell.className += " shotAt";
     cell.style["background-color"] = attackResult === "hit" ? "red" : "black";
     cell.removeEventListener("click", playerTurn);
   }
@@ -45,22 +47,10 @@ function computerTurn() {
 }
 
 const humanplayer = new Player("Alex");
-humanplayer.placeShips(
-  [1, 1, 2, "vertical"],
-  [7, 1, 3, "horizontal"],
-  [7, 7, 3, "vertical"],
-  [3, 3, 4, "horizontal"],
-  [5, 5, 5, "horizontal"]
-);
+humanplayer.generateRandomShips();
 
 const computerPlayer = new Player("CPU");
-computerPlayer.placeShips(
-  [1, 1, 2, "vertical"],
-  [7, 1, 3, "horizontal"],
-  [7, 7, 3, "vertical"],
-  [3, 3, 4, "horizontal"],
-  [5, 5, 5, "horizontal"]
-);
+computerPlayer.generateRandomShips();
 
 Formatter.displayGameboard(
   humanplayer.gameboard,
@@ -70,3 +60,11 @@ Formatter.displayGameboard(
 const computerGridCells = document.querySelectorAll("#computerBoard .gridItem");
 
 computerGridCells.forEach((cell) => cell.addEventListener("click", playerTurn));
+
+document.querySelector("button#randomButton").addEventListener("click", () => {
+  humanplayer.generateRandomShips();
+  Formatter.displayGameboard(
+    humanplayer.gameboard,
+    document.querySelector("div#playerBoard")
+  );
+});

@@ -67,13 +67,20 @@ class Gameboard {
       [row, col] = this.gameboard[row][col];
     }
 
-    this.shots.push([row, col])
+    this.shots.push([row, col]);
     this.gameboard[row][col].hit();
     return "hit";
   }
 
   allSunk() {
     return this.ships.every((ship) => ship.isSunk());
+  }
+
+  clearShips() {
+    this.gameboard = Array.from({ length: this.size }, () => Array(this.size).fill(null));
+    while (this.ships[0]) {
+      this.ships.pop();
+    }
   }
 }
 

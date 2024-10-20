@@ -32,10 +32,10 @@ div.gameboard {
 }
 
 div.gridItem {
-    background-color: white;
+  background-color: white;
 }
 
 button {
-    display: block;
-    margin: 5% auto 0;
+  display: block;
+  margin: 5% auto 0;
 }
