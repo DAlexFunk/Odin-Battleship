@@ -1,9 +1,7 @@
 import { Gameboard } from "./gameboard";
-import { Formatter } from "./formatter";
 
 class Player {
-  constructor(name, opposingPlayer) {
-    this.name = name;
+  constructor(opposingPlayer) {
     this.opposingPlayer = opposingPlayer;
     this.gameboard = new Gameboard();
   }

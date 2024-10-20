@@ -13,14 +13,18 @@ function playerTurn(evt) {
 
   if (computerPlayer.gameboard.allSunk()) {
     const cells = document.querySelectorAll("div.gridItem");
-    alert("YOU Win");
+    alert("You Win");
     cells.forEach((cell) => {
       cell.removeEventListener("click", playerTurn);
-      cell.removeEventListener("click", computerTurn);
     });
-  }
 
-  computerTurn();
+    const playAgain = document.createElement("button");
+    playAgain.textContent = "Play Again";
+    playAgain.addEventListener("click", () => location.reload());
+    document.querySelector("div#playerHalf").appendChild(playAgain);
+  } else {
+    computerTurn();
+  }
 }
 
 function computerTurn() {
@@ -43,14 +47,20 @@ function computerTurn() {
     cells.forEach((cell) => {
       cell.removeEventListener("click", playerTurn);
     });
+
+    const playAgain = document.createElement("button");
+    playAgain.textContent = "Play Again";
+    playAgain.addEventListener("click", () => location.reload());
+    document.querySelector("div#playerHalf").appendChild(playAgain);
   }
 }
 
 function startGame() {
   const computerGridCells = document.querySelectorAll("#computerBoard .gridItem");
-  computerGridCells.forEach((cell) =>
-    cell.addEventListener("click", playerTurn)
-  );
+  computerGridCells.forEach((cell) => {
+    cell.addEventListener("click", playerTurn);
+    cell.style["background-color"] = "white";
+  });
 
   computerPlayer.generateRandomShips();
 
@@ -58,11 +68,10 @@ function startGame() {
   document.querySelector("button#randomButton").remove();
 }
 
-const humanplayer = new Player("Alex");
+const computerPlayer = new Player();
+const humanplayer = new Player();
+
 humanplayer.generateRandomShips();
-
-const computerPlayer = new Player("CPU");
-
 Formatter.displayGameboard(
   humanplayer.gameboard,
   document.querySelector("div#playerBoard")

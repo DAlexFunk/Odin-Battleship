@@ -35,6 +35,10 @@ div.gridItem {
   background-color: white;
 }
 
+div#computerBoard div.gridItem {
+  background-color: black;
+}
+
 button {
   display: block;
   margin: 5% auto 0;
