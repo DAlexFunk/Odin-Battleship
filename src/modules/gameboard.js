@@ -5,6 +5,7 @@ class Gameboard {
     this.size = size;
     this.ships = [];
     this.missedShots = [];
+    this.shots = [];
     this.gameboard = Array.from({ length: size }, () => Array(size).fill(null));
   }
 
@@ -66,6 +67,7 @@ class Gameboard {
       [row, col] = this.gameboard[row][col];
     }
 
+    this.shots.push([row, col])
     this.gameboard[row][col].hit();
     return "hit";
   }
